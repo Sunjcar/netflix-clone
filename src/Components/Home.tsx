@@ -2,6 +2,9 @@ import Netflix from '../Components/Images/Netflix.png'
 import Background from '../Components/Images/Background.jpg'
 import TV from '../Components/Images/TV.png'
 import Video from '../Components/Images/video-tv.m4v'
+import Device from '../Components/Images/Devices.png'
+import DeviceVid from '../Components/Images/video-device.m4v'
+
 const Home = () => {
     return (
         <div>
@@ -31,13 +34,28 @@ const Home = () => {
                     <h2 className=' text-[1.625rem] max-w-[800px] font-sans font-[100]'>Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</h2>
                 </div>
                 <div className='relative box-border flex flex-auto h-full w-[700px]'>
-                    <img src={TV} />
-                    <div className='flex absolute max-h-[65%] max-w-[73%] overflow-hidden top-[21%] left-[13%]'>
+                    <img className='relative z-10' alt='tv' src={TV} />
+                    <div className='flex absolute max-h-[65%] max-w-[73%] top-[21%] left-[13%]'>
                         <video className='w-full overflow-clip' autoPlay playsInline loop muted>
                             <source type='video/mp4' src={Video} />
                         </video>
                     </div>
                 </div>
+            </div>
+            <div className=' relative gap-8 items-center flex bg-black w-full py-[70px] px-[45px] text-white box-border border-b-8 border-solid border-[rgb(50,50,50)] '>
+                <div className='relative box-border flex flex-auto h-full w-[450px]'>
+                    <img className='relative z-10' alt='devices' src={Device} />
+                    <div className='flex absolute max-h-[46%] max-w-[70%] overflow-hidden top-[11%] left-[14.5%]'>
+                        <video className='w-full overflow-clip' autoPlay playsInline loop muted>
+                            <source type='video/mp4' src={DeviceVid} />
+                        </video>
+                    </div>
+                </div>
+                <div >
+                    <h1 className='font-sans text-[3.725rem] leading-none max-w-[500px] font-extrabold '>Watch everywhere.</h1>
+                    <h2 className=' text-[1.625rem] max-w-[600px] font-sans font-[100]'>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV without paying more.</h2>
+                </div>
+
             </div>
         </div>
     )
