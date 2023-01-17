@@ -72,7 +72,7 @@ const Home = () => {
                         <h2 className='  text-[1.625rem] max-w-[600px] font-sans font-[100]'>Send kids on adventures with their favorite characters in a space made just for them—free with your membership.</h2>
                     </div>
 
-                        <img className='relative z-10' alt='tv' src={Kids} />
+                    <img className='relative z-10' alt='tv' src={Kids} />
 
                 </div>
             </div>
@@ -93,6 +93,83 @@ const Home = () => {
                         <h1 className='font-sans text-[3.725rem] leading-none max-w-[500px] font-extrabold '>Download your shows to watch offline.</h1>
                         <h2 className=' text-[1.625rem] max-w-[600px] font-sans font-[100]'>Available on all plans except Basic with ads.</h2>
                     </div>
+                </div>
+            </div>
+            <div className=' flex flex-col relative items-center bg-black w-full py-[70px] px-[45px] text-white box-border border-b-8 border-solid border-[rgb(50,50,50)] justify-between xl:flex-col'>
+                <div className=' relative mx-auto py-[70px] w-full'>
+                    <h1 className='text-[3rem] text-center'> Frequently Asked Questions </h1>
+                    <ul className=' text-white max-w-[750px] p-0 my-[2em] mx-auto'>
+                        <li className='relative items-center justify-between list-none list-item lg:flex-row'>
+                            <button className='flex relative items-center justify-between text-[1.7rem] mb-[1px] px-[1em] py-[1em] w-full border-0 text-left bg-[rgb(48,48,48)] text-white cursor-pointer dropdown:block' role="navigation">
+                                What is Netflix?
+                                <svg
+                                    className=' scale-[1.3] rotate-45'
+                                    stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 15 15" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z" fill="currentColor"></path>
+                                </svg>
+                                <div className='max-h-[1200px] bg-[rgb(48,48,48)] text-left text-[1.7rem] absolute hidden w-auto' aria-label="submenu">
+                                    <span>
+                                        Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.
+                                    </span>
+                                    <br></br>
+                                    <br></br>
+                                    <span>
+                                        You can watch as much as you want, whenever you want without a single commercial - all for one low monthly price. There's always something new to discover and new TV shows and movies are added every week!
+                                    </span>
+                                </div>
+                            </button>
+                        </li>
+                        <li className='items-center justify-between mx-auto list-none list-item lg:flex-row'>
+                            <button className='flex relative items-center justify-between text-[1.7rem] mb-[1px] px-[1em] py-[1em] w-full border-0 text-left bg-[rgb(48,48,48)] text-white cursor-pointer'>
+                                How much does Netflix Cost?
+                                <svg
+                                    className=' scale-[1.3] rotate-45'
+                                    stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 15 15" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z" fill="currentColor"></path>
+                                </svg>
+                            </button>
+                        </li>
+                        <li className='items-center justify-between mx-auto list-none list-item lg:flex-row'>
+                            <button className='flex relative items-center justify-between text-[1.7rem] mb-[1px] px-[1em] py-[1em] w-full border-0 text-left bg-[rgb(48,48,48)] text-white cursor-pointer'>
+                                Where can I watch?
+                                <svg
+                                    className=' scale-[1.3] rotate-45'
+                                    stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 15 15" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z" fill="currentColor"></path>
+                                </svg>
+                            </button>
+                        </li>
+                        <li className='items-center justify-between mx-auto list-none list-item lg:flex-row'>
+                            <button className='flex relative items-center justify-between text-[1.7rem] mb-[1px] px-[1em] py-[1em] w-full border-0 text-left bg-[rgb(48,48,48)] text-white cursor-pointer'>
+                                How do I cancel?
+                                <svg
+                                    className=' scale-[1.3] rotate-45'
+                                    stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 15 15" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z" fill="currentColor"></path>
+                                </svg>
+                            </button>
+                        </li>
+                        <li className='items-center justify-between mx-auto list-none list-item lg:flex-row'>
+                            <button className='flex relative items-center justify-between text-[1.7rem] mb-[1px] px-[1em] py-[1em] w-full border-0 text-left bg-[rgb(48,48,48)] text-white cursor-pointer'>
+                                What can I watch on Netflix?
+                                <svg
+                                    className=' scale-[1.3] rotate-45'
+                                    stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 15 15" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z" fill="currentColor"></path>
+                                </svg>
+                            </button>
+                        </li>
+                        <li className='items-center justify-between mx-auto list-none list-item lg:flex-row'>
+                            <button className='flex relative items-center justify-between text-[1.7rem] mb-[1px] px-[1em] py-[1em] w-full border-0 text-left bg-[rgb(48,48,48)] text-white cursor-pointer'>
+                                Is Netflix good for kids?
+                                <svg
+                                    className=' scale-[1.3] rotate-45'
+                                    stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 15 15" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z" fill="currentColor"></path>
+                                </svg>
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
