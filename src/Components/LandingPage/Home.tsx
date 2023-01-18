@@ -34,7 +34,7 @@ const Home = () => {
                 </div>
             </div>
             <div className=' flex relative items-center bg-black w-full py-[70px] px-[45px] text-white box-border border-b-8 border-solid border-[rgb(50,50,50)] justify-between xl:flex-col '>
-                <div className='flex flex-col items-center justify-center lg:items-center lg:justify-center lg:flex-row max-w-[1100px]'>
+                <div className='flex flex-col items-center justify-center lg:items-center lg:justify-center lg:flex-row w-[1100px]'>
                     <div>
                         <h1 className='font-sans text-[3.725rem] leading-none max-w-[500px] font-extrabold '>Enjoy on your TV.</h1>
                         <h2 className=' text-[1.625rem] max-w-[800px] font-sans font-[100]'>Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</h2>
@@ -50,7 +50,7 @@ const Home = () => {
                 </div>
             </div>
             <div className='flex relative items-center bg-black w-full py-[70px] px-[45px] text-white box-border border-b-8 border-solid border-[rgb(50,50,50)] justify-between xl:flex-col'>
-                <div className='flex flex-col items-center justify-center lg:flex-row max-w-[1100px]'>
+                <div className='flex flex-col items-center justify-center lg:flex-row w-[1100px]'>
                     <div className='relative box-border flex flex-auto h-full w-[450px] flex-col items-center justify-between lg:flex-row'>
                         <img className='relative z-10' alt='devices' src={Device} />
                         <div className='flex absolute max-h-[46%] max-w-[70%] overflow-hidden top-[11%] left-[14.5%]'>
@@ -67,7 +67,7 @@ const Home = () => {
                 </div>
             </div>
             <div className=' flex relative items-center bg-black w-full py-[70px] px-[45px] text-white box-border border-b-8 border-solid border-[rgb(50,50,50)] justify-between xl:flex-col'>
-                <div className='flex flex-col items-center justify-center lg:flex-row max-w-[1100px]'>
+                <div className='flex flex-col items-center justify-center lg:flex-row w-[1100px]'>
                     <div className='relative mx-auto width-full'>
                         <h1 className='font-sans text-[3.725rem] leading-none max-w-[500px] font-extrabold '>Create profiles for kids.</h1>
                         <h2 className='  text-[1.625rem] max-w-[600px] font-sans font-[100]'>Send kids on adventures with their favorite characters in a space made just for them—free with your membership.</h2>
@@ -78,9 +78,9 @@ const Home = () => {
                 </div>
             </div>
             <div className=' flex relative items-center bg-black w-full py-[70px] px-[45px] text-white box-border border-b-8 border-solid border-[rgb(50,50,50)] justify-between xl:flex-col'>
-                <div className='flex flex-col items-center justify-between lg:flex-row'>
+                <div className='flex flex-col items-center justify-between lg:flex-row w-[1100px]'>
                     <div className='box-border relative flex flex-auto '>
-                        <img className='relative z-10' alt='devices' src={Phone} />
+                        <img className='relative z-10 h-auto max-w-full' alt='devices' src={Phone} />
                         <div className=' translate-x-[-50%] rounded-xl flex absolute px-[.5em] py-[.75em] items-center bg-[rgb(0,0,0)] border-solid z-10 border-2 border-[rgb(255,255,255,0.25)] w-[60%] bottom-[5%] left-[50%] '>
                             <img alt='Stranger Things' src={StrangerThings} className=' h-[4.5em] mr-[1em]' />
                             <div className='flex-1 '>
@@ -90,7 +90,7 @@ const Home = () => {
                             <img alt='download gif' src={gif} className='h-[3.5em]' />
                         </div>
                     </div>
-                    <div >
+                    <div className=' py-[75px]'>
                         <h1 className='font-sans text-[3.725rem] leading-none max-w-[500px] font-extrabold '>Download your shows to watch offline.</h1>
                         <h2 className=' text-[1.625rem] max-w-[600px] font-sans font-[100]'>Available on all plans except Basic with ads.</h2>
                     </div>
@@ -99,7 +99,7 @@ const Home = () => {
             <div className=' flex flex-col relative items-center bg-black w-full py-[70px] px-[45px] text-white box-border border-b-8 border-solid border-[rgb(50,50,50)] justify-between xl:flex-col'>
                 <div className=' relative mx-auto py-[70px] w-full'>
                     <h1 className='text-[3rem] text-center'> Frequently Asked Questions </h1>
-                    <FAQ/>
+                    <FAQ />
                 </div>
             </div>
         </div>
