@@ -1,4 +1,5 @@
-import Home from './Components/Home'
+import Home from "./Components/LandingPage/Home"
+
 
 const App = () => {
   return (
