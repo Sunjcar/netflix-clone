@@ -12,8 +12,8 @@ import { FAQ } from './FAQ'
 
 const Home = () => {
     return (
-        <div>
-            <div className='flex flex-col border-b-8 border-solid border-[rgb(50,50,50)] h-[700px]'>
+        <div className='w-[100vw] '>
+            <div className='flex flex-col border-b-8 border-solid border-[rgb(50,50,50)]'>
                 <header className='flex items-center justify-between p-8 '>
                     <img className='w-[9rem] z-10' src={Netflix} />
                     <button className=' text-white bg-[#e50914] px-5 py-2 rounded-[3px] z-10'> Sign In </button>
@@ -33,13 +33,13 @@ const Home = () => {
                     <img className='z-0 object-cover w-full h-full ' src={Background} />
                 </div>
             </div>
-            <div className=' flex relative items-center bg-black w-full py-[70px] px-[45px] text-white box-border border-b-8 border-solid border-[rgb(50,50,50)] justify-between xl:flex-col '>
+            <div className=' flex relative items-center bg-black w-full py-[70px] px-[45px] text-white box-border border-t-8 border-b-8 border-solid border-[rgb(50,50,50)] justify-between xl:flex-col '>
                 <div className='flex flex-col items-center justify-center lg:items-center lg:justify-center lg:flex-row w-[1100px]'>
                     <div>
                         <h1 className='font-sans text-[3.725rem] leading-none max-w-[500px] font-extrabold '>Enjoy on your TV.</h1>
                         <h2 className=' text-[1.625rem] max-w-[800px] font-sans font-[100]'>Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</h2>
                     </div>
-                    <div className='relative box-border flex flex-auto h-full w-[450px] flex-col items-center justify-between lg:flex-row'>
+                    <div className='relative box-border flex flex-auto h-full w-[350px] lg:w-[450px] flex-col items-center justify-between lg:flex-row'>
                         <img className='relative z-10' alt='tv' src={TV} />
                         <div className='flex absolute max-h-[65%] max-w-[73%] top-[21%] left-[13%]'>
                             <video className='w-full overflow-clip' autoPlay playsInline loop muted>
@@ -51,7 +51,7 @@ const Home = () => {
             </div>
             <div className='flex relative items-center bg-black w-full py-[70px] px-[45px] text-white box-border border-b-8 border-solid border-[rgb(50,50,50)] justify-between xl:flex-col'>
                 <div className='flex flex-col items-center justify-center lg:flex-row w-[1100px]'>
-                    <div className='relative box-border flex flex-auto h-full w-[450px] flex-col items-center justify-between lg:flex-row'>
+                <div className='relative box-border flex flex-auto h-full w-[350px] lg:w-[450px] flex-col items-center justify-between lg:flex-row'>
                         <img className='relative z-10' alt='devices' src={Device} />
                         <div className='flex absolute max-h-[46%] max-w-[70%] overflow-hidden top-[11%] left-[14.5%]'>
                             <video className='w-full overflow-clip' autoPlay playsInline loop muted>
