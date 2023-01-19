@@ -9,6 +9,7 @@ import Phone from '../LandingPage/Images/Phone.jpeg'
 import StrangerThings from '../LandingPage/Images/strangerthings.png'
 import gif from '../LandingPage/Images/downloadgif.gif'
 import { FAQ } from './FAQ'
+import { IoIosArrowForward } from "react-icons/io";
 
 const Home = () => {
     return (
@@ -20,16 +21,24 @@ const Home = () => {
                 </header>
                 <div className=' flex-col flex py-[70px] px-[45px] gap-4'>
                     <h1 className=' z-10 text-lg text-white mx-auto max-w-[640px] font-[500] text-[3.125rem] text-center leading-none'> Unlimited movies, TV shows and more.</h1>
-                    <h2 className='z-10 text-white text-center text-[1.5rem]'> Watch anywhere. Cancel anytime.</h2>
+                    <h2 className='z-10 text-white text-center text-[1.125rem] lg:text-[2rem] my-[1rem]'> Watch anywhere. Cancel anytime.</h2>
+
+                    <form className='flex flex-col items-center justify-center gap-2 '>
+                        <h3 className='z-10 text-white text-[1.125] lg:text-[1.425rem] px-[10%] text-center'> Ready to watch? Enter your email to create or restart your membership.</h3>
+                        <div className='flex flex-col items-center lg:flex-row'>
+                            <div className='mt-[10px] lg:mt-0 z-10 '>
+                                <div className='relative '>
+                                    <label>
+                                        <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] '></input>
+                                        <label className=' text-[#8c8c8c] text-[14px] absolute left-[10px] top-[50%] translate-y-[-50%] transition-[ease,top.1s] '> Email address</label>
+                                    </label>
+                                </div>
+                            </div>
+                            <button className=' z-10 p-[12px] rounded-sm text-white bg-[#e50914] lg:mt-0 mt-[10px] hover:bg-red-500'> Get Started</button>
+                        </div>
+                    </form>
                 </div>
-                <form className='flex flex-col items-center justify-center gap-4 '>
-                    <h3 className='z-10 text-white text-[1.2rem]'> Ready to watch? Enter your email to create or restart your membership.</h3>
-                    <div className='flex'>
-                        <input className=' z-10 border-[1px] rounded-sm box-border p-4' type='email' placeholder='Email address' />
-                        <button className=' z-10 p-4 rounded-sm text-white bg-[#e50914]'> Get Started</button>
-                    </div>
-                </form>
-                <div className='absolute top-0 bottom-0 left-0 right-0 brightness-50 h-[692px]'>
+                <div className='absolute top-0 bottom-0 left-0 right-0 brightness-50 h-[720px] lg:h-[692px]'>
                     <img className='z-0 object-cover w-full h-full ' src={Background} />
                 </div>
             </div>
@@ -51,7 +60,7 @@ const Home = () => {
             </div>
             <div className='flex relative items-center bg-black w-full py-[70px] px-[45px] text-white box-border border-b-8 border-solid border-[rgb(50,50,50)] justify-between xl:flex-col'>
                 <div className='flex flex-col items-center justify-center lg:flex-row w-[1100px]'>
-                <div className='relative box-border flex flex-auto h-full w-[350px] lg:w-[450px] flex-col items-center justify-between lg:flex-row'>
+                    <div className='relative box-border flex flex-auto h-full w-[350px] lg:w-[450px] flex-col items-center justify-between lg:flex-row'>
                         <img className='relative z-10' alt='devices' src={Device} />
                         <div className='flex absolute max-h-[46%] max-w-[70%] overflow-hidden top-[11%] left-[14.5%]'>
                             <video className='w-full overflow-clip' autoPlay playsInline loop muted>
@@ -100,6 +109,23 @@ const Home = () => {
                 <div className=' relative mx-auto py-[70px] w-full'>
                     <h1 className='text-[3rem] text-center'> Frequently Asked Questions </h1>
                     <FAQ />
+                    <form className='flex flex-col items-center justify-center'>
+                        <h3 className=' text-center px-[10%]'> Ready to watch? Enter your email to create or restart your membership.</h3>
+                        <div className='flex flex-col items-center lg:flex-row'>
+                            <div className='mt-[10px]'>
+                                <div className='relative'>
+                                    <label>
+                                    <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] '></input>
+                                        <label className=' text-[#8c8c8c] text-[14px] absolute left-[10px] top-[50%] translate-y-[-50%] transition-[ease,top.1s] '> Email address</label>
+                                    </label>
+                                </div>
+                            </div>
+                            <button className='inline-flex gap-2 h-[48px] items-center text-white bg-[#e50914] hover:bg-red-500 mt-[10px] px-[1em] p-4 rounded-sm w-auto'>
+                                <span> Get Started </span>
+                                <span><IoIosArrowForward /> </span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
