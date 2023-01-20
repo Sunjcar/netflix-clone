@@ -27,11 +27,11 @@ const Home = () => {
                         <h3 className='z-10 text-white text-[1.125] lg:text-[1.425rem] px-[10%] text-center'> Ready to watch? Enter your email to create or restart your membership.</h3>
                         <div className='flex flex-col items-center lg:flex-row'>
                             <div className='mt-[10px] lg:mt-0 z-10 '>
-                                <div className='relative '>
-                                    <label>
-                                        <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] '></input>
-                                        <label className=' text-[#8c8c8c] text-[14px] absolute left-[10px] top-[50%] translate-y-[-50%] transition-[ease,top.1s] '> Email address</label>
-                                    </label>
+                                <div>
+                                    <div className='relative '>
+                                        <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] peer '></input>
+                                        <label className=' text-[#8c8c8c] text-[14px] absolute transform peer-focus:-translate-y-6 peer-focus:scale-90 left-[10px] top-[50%] translate-y-[-50%] transition-[ease,top.1s] '> Email address</label>
+                                    </div>
                                 </div>
                             </div>
                             <button className=' z-10 p-[12px] rounded-sm text-white bg-[#e50914] lg:mt-0 mt-[10px] hover:bg-red-500'> Get Started</button>
@@ -115,8 +115,8 @@ const Home = () => {
                             <div className='mt-[10px]'>
                                 <div className='relative'>
                                     <label>
-                                    <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] '></input>
-                                        <label className=' text-[#8c8c8c] text-[14px] absolute left-[10px] top-[50%] translate-y-[-50%] transition-[ease,top.1s] '> Email address</label>
+                                    <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] peer '></input>
+                                        <label className=' text-[#8c8c8c] text-[14px] absolute transform peer-focus:-translate-y-6 peer-focus:scale-90 left-[10px] top-[50%] translate-y-[-50%] transition-[ease,top.1s] '> Email address</label>
                                     </label>
                                 </div>
                             </div>
