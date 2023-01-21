@@ -10,14 +10,17 @@ import StrangerThings from '../LandingPage/Images/strangerthings.png'
 import gif from '../LandingPage/Images/downloadgif.gif'
 import { FAQ } from './FAQ'
 import { IoIosArrowForward } from "react-icons/io";
+import { Link } from 'react-router-dom'
 
 const Home = () => {
     return (
         <div className='w-[100vw] '>
             <div className='flex flex-col border-b-8 border-solid border-[rgb(50,50,50)]'>
-                <header className='flex items-center justify-between p-8 '>
+                <header className='z-10 flex items-center justify-between p-8 '>
                     <img className='w-[9rem] z-10' src={Netflix} />
-                    <button className=' text-white bg-[#e50914] px-5 py-2 rounded-[3px] z-10'> Sign In </button>
+                    <Link to='sign-in'>
+                        <button className=' text-white bg-[#e50914] px-5 py-2 rounded-[3px] z-10'> Sign In </button>
+                    </Link>
                 </header>
                 <div className=' flex-col flex py-[70px] px-[45px] gap-4'>
                     <h1 className=' z-10 text-lg text-white mx-auto max-w-[640px] font-[500] text-[3.125rem] text-center leading-none'> Unlimited movies, TV shows and more.</h1>
@@ -115,7 +118,7 @@ const Home = () => {
                             <div className='mt-[10px]'>
                                 <div className='relative'>
                                     <label>
-                                    <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] peer '></input>
+                                        <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] peer '></input>
                                         <label className=' text-[#8c8c8c] text-[14px] absolute transform peer-focus:-translate-y-6 peer-focus:scale-90 left-[10px] top-[50%] translate-y-[-50%] transition-[ease,top.1s] '> Email address</label>
                                     </label>
                                 </div>
