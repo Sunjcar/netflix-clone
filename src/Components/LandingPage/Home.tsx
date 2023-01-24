@@ -32,8 +32,8 @@ const Home = () => {
                             <div className='mt-[10px] lg:mt-0 z-10 '>
                                 <div>
                                     <div className='relative '>
-                                        <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] peer '></input>
-                                        <label className=' text-[#8c8c8c] text-[14px] absolute transform peer-focus:-translate-y-6 peer-focus:scale-90 left-[10px] top-[50%] translate-y-[-50%] transition-[ease,top.1s] '> Email address</label>
+                                        <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] peer ' placeholder=' '></input>
+                                        <label className=' text-[#8c8c8c] pointer-events-none text-[14px] absolute duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4'> Email address</label>
                                     </div>
                                 </div>
                             </div>
@@ -118,8 +118,8 @@ const Home = () => {
                             <div className='mt-[10px]'>
                                 <div className='relative'>
                                     <label>
-                                        <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] peer '></input>
-                                        <label className=' text-[#8c8c8c] text-[14px] absolute transform peer-focus:-translate-y-6 peer-focus:scale-90 left-[10px] top-[50%] translate-y-[-50%] transition-[ease,top.1s] '> Email address</label>
+                                        <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] peer ' placeholder=' '></input>
+                                        <label className=' text-[#8c8c8c] pointer-events-none text-[14px] absolute duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4'> Email address</label>
                                     </label>
                                 </div>
                             </div>

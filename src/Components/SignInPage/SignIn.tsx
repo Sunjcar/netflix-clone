@@ -1,5 +1,6 @@
 import Netflix from '../LandingPage/Images/Netflix.png'
 import Background from '../LandingPage/Images/Background.jpg'
+import { Link } from 'react-router-dom'
 const SignIn = () => {
   return (
     <div className='w-[100vw] h-[100vh]'>
@@ -11,12 +12,12 @@ const SignIn = () => {
           <h1 className=' text-[2em] py-[.67em]'> Sign In </h1>
           <form>
             <div className='relative flex flex-col pb-[16px]'>
-              <input type='email' className=' leading-5 rounded-sm bg-[rgb(51,51,51)] text-white px-[16px] pt-[24px] pb-1 peer' />
-              <label className=' text-[#8c8c8c] text-[14px] absolute transform peer-focus:-translate-y-8 peer-focus:scale-90 left-[10px] top-[50%] translate-y-[-80%] transition-[ease,top.1s]'> Email or Phone Number</label>
+              <input type='email' className='  leading-5 rounded-sm bg-[rgb(51,51,51)] text-white px-[16px] pt-[24px] pb-1 peer' placeholder=' '/>
+              <label className=' text-[#8c8c8c] pointer-events-none text-[14px] absolute duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4'> Email or Phone Number</label>
             </div>
             <div className='relative flex flex-col pb-[16px]'>
-              <input type='password' className=' leading-5 rounded-sm bg-[rgb(51,51,51)] text-white px-[16px] pt-[24px] pb-1 peer' />
-              <label className=' text-[#8c8c8c] text-[14px] absolute transform peer-focus:-translate-y-8 peer-focus:scale-90 left-[10px] top-[50%] translate-y-[-80%] transition-[ease,top.1s]'> Password</label>
+              <input type='password' className=' leading-5 rounded-sm bg-[rgb(51,51,51)] text-white px-[16px] pt-[24px] pb-1 peer' placeholder=' ' />
+              <label className=' text-[#8c8c8c] pointer-events-none text-[14px] absolute duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4'> Password</label>
             </div>
             <button className='z-10 p-[12px] rounded-sm text-white bg-[#e50914] mt-[24px] mb-[12px] hover:bg-red-500 w-full text-[1rem]'>
               Sign In
@@ -31,9 +32,11 @@ const SignIn = () => {
           </form>
         </div>
         <div className=''>
-        <div className=' mt-[2rem] text-[16px] text-[#8c8c8c]'>
+        <div className=' mt-[2rem] text-[16px] text-[#8c8c8c] flex gap-2'>
           New to Netflix?
-          <a href='#/' className='text-white '> Sign up Now </a>
+          <Link to='/sign-up'>
+            <div className='text-white '> Sign up Now </div>
+            </Link>
         </div>
         <div className=' mt-[1rem]'>
           <p>
