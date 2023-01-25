@@ -5,8 +5,10 @@ const SignUp = () => {
     return (
         <div className='w-[100vw] h-[100vh]'>
             <header className='z-10 flex items-center justify-between p-8 '>
+                <Link to='/'>
                 <img className='w-[9rem] z-10' src={Netflix} />
-                <Link to='sign-in'>
+                </Link>
+                <Link to='/sign-in'>
                     <button className='z-10 px-5 py-2 text-xl text-black font-[500] '> Sign In </button>
                 </Link>
             </header>
