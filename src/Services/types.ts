@@ -91,3 +91,10 @@ export const isShowAPI = (input: MovieAPI | TvAPI): input is ShowAPI => {
   if (!input) return false;
   return true
 }
+
+export interface Logo {
+  aspect_ratio: number;
+  height: number;
+  iso_639_1: string;
+  file_path: string;
+}
