@@ -3,7 +3,7 @@ import { TvShow, Movie } from "../Components/State/types";
 import { config } from "./config";
 import { Logo, MediaType, SliderFilter, Tab } from "./types";
 
-const URL = "https://api.themoviedb.org/3"
+export const URL = "https://api.themoviedb.org/3"
 const API_KEY = config.MY_API_KEY
 
 const sliderOptions: SliderFilter[] = [
