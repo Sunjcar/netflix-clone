@@ -4,7 +4,7 @@ import SignIn from "./Components/SignInPage/SignIn"
 import SignUp from "./Components/SignUpPage"
 import { useStateValue } from "./Components/State"
 import { ReactElement, useEffect, useState } from "react"
-import { Tab } from "./Services/types"
+import { isTab, Tab } from "./Services/types"
 import { userService } from "./Services/UserService"
 import { Main } from "./Components/SliderPage"
 
@@ -36,6 +36,16 @@ const App = () => {
       navigate('browse')
     }
   }, [])
+
+  useEffect(() => {
+    if (match) {
+      const tab = match.params.tab;
+      if (isTab(tab)) setTab(tab)
+    }
+  }, [match])
+
+
+
   return (
     <Router>
       <Routes>
