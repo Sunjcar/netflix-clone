@@ -1,4 +1,7 @@
-import { ShowByFilter } from "../State";
+
+import { Show } from "../../Services/types";
+import { ShowByFilter} from "../State";
+
 
 export const validateEmail = (email: string): boolean => {
     const re = /\S+@\S+\.\S+/;
@@ -35,4 +38,21 @@ export const rearrangeShowByFilter = (
     [arrayCopy[trending], arrayCopy[0]] = [arrayCopy[0], arrayCopy[trending]];
 
     return arrayCopy;
+};
+
+
+export const shuffleShowArr = (shows: Show[]): Show[] => {
+    const newShow = [...shows];
+    let newIndex, index = newShow.length;
+    
+    while(index !==0){
+        newIndex = Math.floor(Math.random() * index);
+        index -=1;
+
+        [newShow[index], newShow[newIndex]] = [
+            newShow[newIndex],
+            newShow[index]
+        ];
+    }
+    return newShow;
 };

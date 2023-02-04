@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import tmdbAPI from "../../Services/tmdbAPI";
-import { Tab } from "../../Services/types";
+import { Show, Tab } from "../../Services/types";
 import { ShowByFilter, useStateValue } from "../State";
-import { Show } from "../State/types";
 import { rearrangeShowByFilter } from "../utils/helpers";
 
 
@@ -34,7 +33,7 @@ export const Main = ({ tab }: SliderProps) => {
         tmdbAPI
         .getShowForBillboard(tab)
         .then((data: Show | null) => setBillboard(data));
-    }, [tab, tvshowData, movieData, homeData])
+    }, [tab, tvshowData, movieData, homeData]);
     return (
         <div className=" bg-[#141414] text-white">
         </div>
