@@ -1,10 +1,9 @@
 import axios from "axios";
-import { TvShow, Movie } from "../Components/State/types";
 import { config } from "./config";
-import { Logo, MediaType, SliderFilter, Tab } from "./types";
+import { Logo, MediaType, SliderFilter, Tab, APIRes, ShowAPI, TvShow, Movie, Show } from "./types";
 
-export const URL = "https://api.themoviedb.org/3"
-const API_KEY = config.MY_API_KEY
+export const URL = "https://api.themoviedb.org/3";
+const API_KEY = config.MY_API_KEY;
 
 const sliderOptions: SliderFilter[] = [
   {
@@ -42,7 +41,7 @@ const tabType = (tab: Tab): MediaType => {
     : tab === 'movies'
       ? 'movie'
       : 'tv';
-}
+};
 
 const getShowForBillboard = async (
   tab: Tab
@@ -71,30 +70,77 @@ const getShowForBillboard = async (
     }
 
     return type === 'tv'
-    ? {
-      type: "tv",
-      backdrop_path: show.backdrop_path,
-      poster_path: show.poster_path,
-      id: show.id,
-      overview: show.overview,
-      logo: show.logo,
-      name: show.name,
-    }
-  : {
-      type: "movie",
-      backdrop_path: show.backdrop_path,
-      poster_path: show.poster_path,
-      id: show.id,
-      overview: show.overview,
-      logo: show.logo,
-      title: show.title,
-    };
-      
+      ? {
+        type: "tv",
+        backdrop_path: show.backdrop_path,
+        poster_path: show.poster_path,
+        id: show.id,
+        overview: show.overview,
+        logo: show.logo,
+        name: show.name,
+      }
+      : {
+        type: "movie",
+        backdrop_path: show.backdrop_path,
+        poster_path: show.poster_path,
+        id: show.id,
+        overview: show.overview,
+        logo: show.logo,
+        title: show.title,
+      };
+
   }
 
   return null;
 };
 
+const getShowData = (shows: ShowAPI[]): Show[] => {
+  const withPoster = shows.filter((show) => !!show.poster_path);
+  const results = withPoster.map((show) => {
+    if ("title" in show) {
+      return {
+        type: "movie" as const,
+        backdrop_path: show.backdrop_path,
+        poster_path: show.poster_path,
+        id: show.id,
+        overview: show.overview,
+        title: show.title,
+      };
+    } else
+      return {
+        type: "tv" as const,
+        backdrop_path: show.backdrop_path,
+        poster_path: show.poster_path,
+        id: show.id,
+        overview: show.overview,
+        name: show.name,
+      };
+  });
+
+  return results;
+};
+
+const getShowsLists = async (url: string): Promise<Show[] | undefined> => {
+  const url_1 = url + "&page=1";
+  const url_2 = url + "&page=2";
+
+  const response_1 = await axios.get<APIRes>(url_1);
+
+  const response_2 = await axios.get<APIRes>(url_2);
+
+  const dataset1 = response_1.status === 200 ? response_1.data.results : null;
+  const dataset2 = response_1.status === 200 ? response_2.data.results : null;
+
+  if (dataset1 && dataset2) {
+    const dataset = getShowData(dataset1).concat(getShowData(dataset2));
+    return dataset;
+  }
+
+  return;
+};
+
 export default {
-  getShowForBillboard
-}
+  getShowForBillboard,
+  sliderOptions,
+  getShowsLists,
+};

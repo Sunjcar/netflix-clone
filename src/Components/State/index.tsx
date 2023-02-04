@@ -6,7 +6,8 @@ import {
     useContext,
     useReducer,
   } from "react";
-  import { User, Show } from "./types";
+import { User, Show } from "../../Services/types";
+
   import { Action } from "./reducer";
   
   export interface ShowByFilter {
