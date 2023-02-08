@@ -46,7 +46,7 @@ const size = {
     large: "950px",
 };
 
-const devices = {
+export const devices = {
     small: `(max-width: ${size.small})`,
     medium: `(max-width: ${size.medium})`,
     mediumLarge: `(max-width: ${size.mediumLarge})`,
