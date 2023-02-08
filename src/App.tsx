@@ -68,20 +68,18 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='sign-in' element={<SignIn />} />
-        <Route path='sign-up' element={<SignUp />} />
-        <Route path='/browse/:tab' 
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='sign-in' element={<SignIn />} />
+      <Route path='sign-up' element={<SignUp />} />
+      <Route path='/browse/:tab'
         element={
-        <Auth>
-          <Main tab={tab} />
-        </Auth>
-      } />
-      
-      </Routes>
-    </Router>
+          <Auth>
+            <Main tab={tab} />
+          </Auth>
+        } />
+
+    </Routes>
   );
 };
 
