@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Show, User } from "../Components/State/types";
 import { URL } from "./tmdbAPI";
+import { Show, User } from "./types";
 
 interface userAccess {
     username: string;

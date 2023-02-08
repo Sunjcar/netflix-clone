@@ -1,5 +1,6 @@
 
-import { Show } from "../../Services/types";
+import { Show, User } from "../../Services/types";
+import { userService } from "../../Services/UserService";
 import { ShowByFilter} from "../State";
 
 
@@ -56,3 +57,16 @@ export const shuffleShowArr = (shows: Show[]): Show[] => {
     }
     return newShow;
 };
+
+export const signIn = (user: User) => {
+    window.localStorage.setItem('netflix-clone-user', JSON.stringify(user));
+    window.localStorage.setItem('netflix-clone-user-list', JSON.stringify(user.mylist));
+    userService.setToken(user.token);
+};
+
+export const signOut = () => {
+    window.localStorage.removeItem('netflix-clone-user');
+    window.localStorage.removeItem('netflix-clone-user-list');
+    window.scrollTo(0,0);
+    userService.setToken('');
+}
