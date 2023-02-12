@@ -70,3 +70,20 @@ export const signOut = () => {
     window.scrollTo(0,0);
     userService.setToken('');
 }
+
+export const rotateMovieArray = (shift: number, array: Show[]): Show[] => {
+    const copy = [...array];
+  
+    for (let i = 0; i < Math.abs(shift); i++) {
+      if (shift > 0) {
+        const movie = copy.shift();
+        if (movie) copy.push(movie);
+      } else {
+        const movie = copy.pop();
+        if (movie) copy.unshift(movie);
+      }
+    }
+  
+    return copy;
+  };
+
