@@ -1,18 +1,38 @@
-import Netflix from '../LandingPage/Images/Netflix.png'
-import Background from '../LandingPage/Images/Background.jpg'
-import TV from '../LandingPage/Images/TV.png'
-import Video from '../LandingPage/Images/video-tv.m4v'
-import Device from '../LandingPage/Images/Devices.png'
-import DeviceVid from '../LandingPage/Images/video-device.m4v'
-import Kids from '../LandingPage/Images/Kids.png'
-import Phone from '../LandingPage/Images/Phone.jpeg'
-import StrangerThings from '../LandingPage/Images/strangerthings.png'
-import gif from '../LandingPage/Images/downloadgif.gif'
-import { FAQ } from './FAQ'
+import Netflix from '../LandingPage/Images/Netflix.png';
+import Background from '../LandingPage/Images/Background.jpg';
+import TV from '../LandingPage/Images/TV.png';
+import Video from '../LandingPage/Images/video-tv.m4v';
+import Device from '../LandingPage/Images/Devices.png';
+import DeviceVid from '../LandingPage/Images/video-device.m4v';
+import Kids from '../LandingPage/Images/Kids.png';
+import Phone from '../LandingPage/Images/Phone.jpeg';
+import StrangerThings from '../LandingPage/Images/strangerthings.png';
+import gif from '../LandingPage/Images/downloadgif.gif';
+import { FAQ } from './FAQ';
 import { IoIosArrowForward } from "react-icons/io";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import { TextField, useTextField } from '../SignInPage/types';
+import { useStateValue } from '../State';
+import { userService } from '../../Services/UserService';
+import { setAccount } from '../State/reducer';
+import { FormEvent } from 'react';
 
 const Home = () => {
+    const email = useTextField("Email address", "landing", "account");
+    const [, dispatch] = useStateValue();
+    const navigate = useNavigate();
+
+    const handleSignUp = async (event: FormEvent) => {
+        event.preventDefault();
+        if (email.value === "") return email.handleEmptySubmit();
+        if (email.errMsg !== "") return;
+
+        const userExist = await userService.checkUser(email.value);
+        dispatch(setAccount(email.value));
+        if (userExist) navigate("/login");
+        else navigate("/sign-up");
+        window.scrollTo(0, 0);
+    };
     return (
         <div className='w-[100vw] '>
             <div className='flex flex-col border-b-8 border-solid border-[rgb(50,50,50)]'>
@@ -25,15 +45,13 @@ const Home = () => {
                 <div className=' flex-col flex py-[70px] px-[45px] gap-4'>
                     <h1 className=' z-10 text-lg text-white mx-auto max-w-[640px] font-[500] text-[3.125rem] text-center leading-none'> Unlimited movies, TV shows and more.</h1>
                     <h2 className='z-10 text-white text-center text-[1.125rem] lg:text-[2rem] my-[1rem]'> Watch anywhere. Cancel anytime.</h2>
-
-                    <form className='flex flex-col items-center justify-center gap-2 '>
+                    <form className='flex flex-col items-center justify-center gap-2 ' onSubmit={handleSignUp}>
                         <h3 className='z-10 text-white text-[1.125] lg:text-[1.425rem] px-[10%] text-center'> Ready to watch? Enter your email to create or restart your membership.</h3>
                         <div className='flex flex-col items-center lg:flex-row'>
                             <div className='mt-[10px] lg:mt-0 z-10 '>
                                 <div>
                                     <div className='relative '>
-                                        <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] peer ' placeholder=' '></input>
-                                        <label className=' text-[#8c8c8c] pointer-events-none text-[14px] absolute duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4'> Email address</label>
+                                        <TextField {...email}/>
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +150,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

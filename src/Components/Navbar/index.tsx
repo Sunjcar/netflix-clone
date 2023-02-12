@@ -1,66 +1,65 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../assets/logo.png";
+import Netflix from '../LandingPage/Images/Netflix.png';
 import { BsBell as Notification_icon } from "react-icons/bs";
 import { BsSearch as Search_icon } from "react-icons/bs";
 import { MdOutlineLogout as Logout_icon } from "react-icons/md";
-import { BiMenu as Menu_icon } from "react-icons/bi";
+import { BiMenu } from "react-icons/bi";
 import { useState } from "react";
 import { devices } from "../LandingPage/FAQ";
 
 export const NavBar = ({ children, className }: NavBarProps) => {
-    return (
-        <NavContainer className={className}>
-            <Link to="/">
-                <img className="logo" src={logo} />
-            </Link>
-            {children}
-        </NavContainer>
-    );
+  return (
+    <NavContainer className={className}>
+      <Link to="/">
+        <img className="logo" src={Netflix} />
+      </Link>
+      {children}
+    </NavContainer>
+  );
 };
 
 interface NavBar_MainProps {
-    scrolled: boolean;
-    handleLogout: () => void;
+  scrolled: boolean;
+  handleLogout: () => void;
 }
 
 export const NavBar_Main = ({ scrolled, handleLogout }: NavBar_MainProps) => {
-    const [openSidebar, setOpenSidebar] = useState<boolean>(false);
+  const [openSidebar, setOpenSidebar] = useState<boolean>(false);
 
-    return (
-        <NavContainer_Main className={scrolled ? "dark" : ""}>
-            <SideBar className={openSidebar ? "open" : "close"}>
-                <Link to="/browse">Home</Link>
-                <Link to="/browse/tvshows">TV Shows</Link>
-                <Link to="/browse/movies">Movies</Link>
-                <Link to="/browse/mylist">My List</Link>
-            </SideBar>
-            <SideBarMask
-                className={openSidebar ? "open" : "close"}
-                onClick={() => setOpenSidebar(!openSidebar)}
-            />
-            <div className="sidebar">
-                <Menu_icon onClick={() => setOpenSidebar(!openSidebar)} />
-            </div>
-            <div className="logo">
-                <Link to="/">
-                    <img className="logo" src={logo} />
-                </Link>
-            </div>
-            <div className="nav-link">
-                <Link to="/browse">Home</Link>
-                <Link to="/browse/tvshows">TV Shows</Link>
-                <Link to="/browse/movies">Movies</Link>
-                <Link to="/browse/mylist">My List</Link>
-            </div>
-
-            <NavButtonContainer>
-                <Search_icon />
-                <Notification_icon />
-                <Logout_icon style={{ cursor: "pointer" }} onClick={handleLogout} />
-            </NavButtonContainer>
-        </NavContainer_Main>
-    );
+  return (
+    <NavContainer_Main className={scrolled ? "dark" : ""}>
+      <SideBar className={openSidebar ? "open" : "close"}>
+        <Link to="/browse">Home</Link>
+        <Link to="/browse/tvshows">TV Shows</Link>
+        <Link to="/browse/movies">Movies</Link>
+        <Link to="/browse/mylist">My List</Link>
+      </SideBar>
+      <SideBarMask
+        className={openSidebar ? "open" : "close"}
+        onClick={() => setOpenSidebar(!openSidebar)}
+      />
+      <div >
+        <Link to="/">
+          <img className="logo" src={Netflix} />
+        </Link>
+      </div>
+      <div className="flex items-center flex-1 ml-9">
+      <BiMenu onClick={() => setOpenSidebar(!openSidebar)} />
+      <div className="flex gap-4 px-3">
+        <Link to="/browse">Home</Link>
+        <Link to="/browse/tvshows">TV Shows</Link>
+        <Link to="/browse/movies">Movies</Link>
+        <Link to="/browse/mylist">My List</Link>
+      </div>
+      </div>
+      <NavButtonContainer>
+        <Search_icon />
+        <Notification_icon />
+        <Logout_icon style={{ cursor: "pointer" }} onClick={handleLogout} />
+      </NavButtonContainer>
+    </NavContainer_Main>
+  );
 };
 
 const NavContainer = styled.div`
@@ -197,8 +196,8 @@ export const SignIn = styled(Link)`
 `;
 
 interface NavBarProps {
-    children?: React.ReactNode;
-    className: string;
+  children?: React.ReactNode;
+  className: string;
 }
 
 const NavButtonContainer = styled.div`
