@@ -26,6 +26,10 @@ export interface Video {
   id: string;
 }
 
+export interface VideoAPI {
+  results: Video[];
+}
+
 export interface Movie extends ShowBase {
   type: "movie";
   title: string;
