@@ -129,6 +129,56 @@ export const TextField = ({
   );
 };
 
+export const RedButton = styled.button`
+  background-color: rgb(229, 9, 20);
+  background-image: linear-gradient(180deg, #e50914, #db0510);
+  color: white;
+  border: none;
+  border-radius: 0px 3px 3px 0px;
+  font-family: "Netflix Sans Light";
+  height: 3.8rem;
+  width: 10rem;
+  font-size: 1.2rem;
+  border: 1px solid #333;
+  cursor: pointer;
+  margin-top: -.1px;
+  @media ${devices.large} {
+    width: 140px;
+    height: 48px;
+    font-size: 1rem;
+    border-radius: 4px;
+  }
+  @media ${devices.medium} {
+    width: 120px;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+  &.signin {
+    width: 100%;
+    font-size: 1rem;
+  }
+  &.signup {
+    width: 100%;
+    font-size: 1rem;
+  }
+`;
+
+export const FormInput = styled.div`
+  z-index: 10;
+  margin: 0 auto;
+  display: flex;
+  max-width: 80%;
+  @media ${devices.large} {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  @media ${devices.medium} {
+    max-width: 100%;
+    padding: 0 5%;
+  }
+`;
+
 const InputContainer = styled.div`
     position: relative;
     display: flex;
@@ -188,7 +238,6 @@ const InputContainer = styled.div`
         }
       }
       div.error {
-        margin-top: 0.4rem;
         font-size: 0.8rem;
         color: #e87c03;
         text-align: left;
@@ -238,7 +287,7 @@ const InputContainer = styled.div`
         border-color: #5fa53f;
       }
       div.error {
-        margin-top: 0.4rem;
+
         font-size: 0.8rem;
         color: #b92d2b;
         text-align: left;
@@ -264,7 +313,7 @@ const InputContainer = styled.div`
         border-bottom: 2px solid #e87c03;
       }
       div.error {
-        margin-top: 0.4rem;
+
         font-size: 1rem;
         color: #e87c03;
         text-align: left;
@@ -275,3 +324,6 @@ const InputContainer = styled.div`
       }
     }
   `;
+
+
+
