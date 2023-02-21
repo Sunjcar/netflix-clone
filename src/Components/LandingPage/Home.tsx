@@ -11,11 +11,12 @@ import gif from '../LandingPage/Images/downloadgif.gif';
 import { FAQ } from './FAQ';
 import { IoIosArrowForward } from "react-icons/io";
 import { Link, useNavigate } from 'react-router-dom';
-import { TextField, useTextField } from '../SignInPage/types';
+import { FormInput, RedButton, TextField, useTextField } from '../SignInPage/types';
 import { useStateValue } from '../State';
 import { userService } from '../../Services/UserService';
 import { setAccount } from '../State/reducer';
 import { FormEvent } from 'react';
+
 
 const Home = () => {
     const email = useTextField("Email address", "landing", "account");
@@ -29,7 +30,7 @@ const Home = () => {
 
         const userExist = await userService.checkUser(email.value);
         dispatch(setAccount(email.value));
-        if (userExist) navigate("/login");
+        if (userExist) navigate("/sign-in");
         else navigate("/sign-up");
         window.scrollTo(0, 0);
     };
@@ -47,16 +48,12 @@ const Home = () => {
                     <h2 className='z-10 text-white text-center text-[1.125rem] lg:text-[2rem] my-[1rem]'> Watch anywhere. Cancel anytime.</h2>
                     <form className='flex flex-col items-center justify-center gap-2 ' onSubmit={handleSignUp}>
                         <h3 className='z-10 text-white text-[1.125] lg:text-[1.425rem] px-[10%] text-center'> Ready to watch? Enter your email to create or restart your membership.</h3>
-                        <div className='flex flex-col items-center lg:flex-row'>
-                            <div className='mt-[10px] lg:mt-0 z-10 '>
-                                <div>
-                                    <div className='relative '>
-                                        <TextField {...email}/>
-                                    </div>
-                                </div>
+                        <FormInput>
+                            <TextField {...email} />
+                            <div>
+                                <RedButton>Get Started &gt;</RedButton>
                             </div>
-                            <button className=' z-10 p-[12px] rounded-sm text-white bg-[#e50914] lg:mt-0 mt-[10px] hover:bg-red-500'> Get Started</button>
-                        </div>
+                        </FormInput>
                     </form>
                 </div>
                 <div className='absolute top-0 bottom-0 left-0 right-0 brightness-50 h-[720px] lg:h-[692px]'>
@@ -130,22 +127,14 @@ const Home = () => {
                 <div className=' relative mx-auto py-[70px] w-full'>
                     <h1 className='text-[3rem] text-center'> Frequently Asked Questions </h1>
                     <FAQ />
-                    <form className='flex flex-col items-center justify-center'>
-                        <h3 className=' text-center px-[10%]'> Ready to watch? Enter your email to create or restart your membership.</h3>
-                        <div className='flex flex-col items-center lg:flex-row'>
-                            <div className='mt-[10px]'>
-                                <div className='relative'>
-                                    <label>
-                                        <input className='  h-[48px] w-full sm:w-[22rem] md:w-[28rem] lg:w-[34rem] px-[10px] pt-[10px] shadow-none border-solid border-[#8c8c8c] border-[1px] rounded-[2px] box-border text-black text-[16px] peer ' placeholder=' '></input>
-                                        <label className=' text-[#8c8c8c] pointer-events-none text-[14px] absolute duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4'> Email address</label>
-                                    </label>
-                                </div>
+                    <form className='flex flex-col items-center justify-center gap-2 text-black ' onSubmit={handleSignUp}>
+                        <h3 className='z-10 text-white text-[1.125] lg:text-[1.425rem] px-[10%] text-center'> Ready to watch? Enter your email to create or restart your membership.</h3>
+                        <FormInput>
+                            <TextField {...email} />
+                            <div>
+                                <RedButton>Get Started &gt;</RedButton>
                             </div>
-                            <button className='inline-flex gap-2 h-[48px] items-center text-white bg-[#e50914] hover:bg-red-500 mt-[10px] px-[1em] p-4 rounded-sm w-auto'>
-                                <span> Get Started </span>
-                                <span><IoIosArrowForward /> </span>
-                            </button>
-                        </div>
+                        </FormInput>
                     </form>
                 </div>
             </div>
