@@ -1,7 +1,44 @@
-import Netflix from '../LandingPage/Images/Netflix.png'
-import Background from '../LandingPage/Images/Background.jpg'
-import { Link } from 'react-router-dom'
+import Netflix from '../LandingPage/Images/Netflix.png';
+import Background from '../LandingPage/Images/Background.jpg';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useStateValue } from '../State';
+import { RedButton, TextField, useTextField } from './types';
+import { userService } from '../../Services/UserService';
+import { signIn } from '../utils/helpers';
+import { setUser } from '../State/reducer';
+import styled from 'styled-components';
 const SignIn = () => {
+  const [showDisclaimer, setShowDisclaimer] = useState<boolean>(false);
+  const [, dispatch] = useStateValue();
+  const [errMsg, setErrMsg] = useState<string>("");
+  const username = useTextField("Email or phone number", "signin", "account");
+  const password = useTextField("Password", "signin", "password");
+  const navigate = useNavigate();
+
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (username.errMsg || password.errMsg) return;
+    if (!username.value || !password.value) {
+      username.handleEmptySubmit();
+      password.handleEmptySubmit();
+      return;
+    }
+
+    try {
+      const user = await userService.login({
+        username: username.value,
+        password: password.value,
+      });
+      signIn(user);
+      dispatch(setUser(user));
+      setErrMsg("");
+      navigate("/browse");
+    } catch (err) {
+      setErrMsg("Wrong credentials");
+      password.value = "";
+    }
+  };
   return (
     <div className='w-[100vw] h-[100vh]'>
       <header className='z-10 flex items-center justify-between p-8 '>
@@ -10,29 +47,29 @@ const SignIn = () => {
         </Link>
       </header>
       <section className='relative rounded-lg bg-[rgba(0,0,0,0.7)] flex box-border flex-col px-[60px] pt-[68px] pb-[40px] text-white max-w-[450px] min-h-[660px] mx-auto z-10 '>
-        <div>
-          <h1 className=' text-[2em] py-[.67em]'> Sign In </h1>
+      <SignInForm>
+          <h1 className='mb-5 text-3xl'>Sign In</h1>
+
+          {errMsg !== "" ? <div className="error-message">{errMsg}</div> : null}
           <form>
-            <div className='relative flex flex-col pb-[16px]'>
-              <input type='email' className='  leading-5 rounded-sm bg-[rgb(51,51,51)] text-white px-[16px] pt-[24px] pb-1 peer' placeholder=' ' />
-              <label className=' text-[#8c8c8c] pointer-events-none text-[14px] absolute duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4'> Email or Phone Number</label>
-            </div>
-            <div className='relative flex flex-col pb-[16px]'>
-              <input type='password' className=' leading-5 rounded-sm bg-[rgb(51,51,51)] text-white px-[16px] pt-[24px] pb-1 peer' placeholder=' ' />
-              <label className=' text-[#8c8c8c] pointer-events-none text-[14px] absolute duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] left-2.5 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4'> Password</label>
-            </div>
-            <button className='z-10 p-[12px] rounded-sm text-white bg-[#e50914] mt-[24px] mb-[12px] hover:bg-red-500 w-full text-[1rem]'>
+            <TextField {...username} />
+            <TextField {...password} />
+
+            <RedButton onClick={handleLogin} className="signin">
               Sign In
-            </button>
-            <div className='flex justify-between'>
-              <div>
-                <input className='text-[#8c8c8c]-[#8c8c8c]' type='checkbox' />
-                <label className='text-[#8c8c8c]'> Remember me </label>
-              </div>
-              <a className='text-[#8c8c8c]'> Need Help? </a>
+            </RedButton>
+            <div className="login-help">
+              <RememberMe>
+                <input type="checkbox" id="remember-me"></input>
+                <label htmlFor="remember-me">
+                  <span className="remember-me-text">Remember me</span>
+                </label>
+              </RememberMe>
+
+              <a>Need help?</a>
             </div>
           </form>
-        </div>
+        </SignInForm>
         <div className=''>
           <div className=' mt-[2rem] text-[16px] text-[#8c8c8c] flex gap-2'>
             New to Netflix?
@@ -54,7 +91,62 @@ const SignIn = () => {
         <img className='z-0 object-cover w-full lg:h-[100vh] min-h-[114vh] ' src={Background} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;
+
+const SignInForm = styled.div`
+  input {
+    line-height: 25px;
+  }
+  button {
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 24px 0 12px;
+    padding: 16px;
+    height: auto;
+  }
+  div.login-help {
+    display: flex;
+    font-size: 13px;
+    color: #b3b3b3;
+  }
+  div.error-message {
+    padding: 10px 20px;
+    color: white;
+    background-color: #e87c03;
+    font-size: 14px;
+    margin: 0 0 16px;
+    border-radius: 4px;
+  }
+`;
+
+const RememberMe = styled.div`
+  position: relative;
+  flex: 1 0 auto;
+  padding-left: 20px;
+  input {
+    position: absolute;
+    opacity: 0;
+    left: 1px;
+  }
+  input[type="checkbox"]:checked + label:after {
+    content: "\u2713";
+    font-weight: 900;
+    color: #000;
+    position: absolute;
+    left: 3px;
+  }
+  label:before {
+    content: "";
+    position: absolute;
+    background: #737373;
+    border: 0;
+    border-radius: 2px;
+    width: 16px;
+    height: 16px;
+    left: 1px;
+    top: -1px;
+  }
+`;
