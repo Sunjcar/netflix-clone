@@ -8,34 +8,37 @@ import { isTab, Tab } from "./Services/types";
 import { userService } from "./Services/UserService";
 import { Main } from "./Components/SliderPage";
 import tmdbAPI from "./Services/tmdbAPI";
-import { setHomeData, setShowData } from "./Components/State/reducer";
+import { setHomeData, setShowData, setUser } from "./Components/State/reducer";
+import VideoPage from "./Components/VideoPage/Video";
 
 const Auth = ({ children }: { children: ReactElement; }) => {
   const [{ user }] = useStateValue();
 
   if (!user) {
-    return <Navigate replace to="/login" />;
+    return <Navigate replace to="/sign-in" />;
   }
 
   return children;
 };
 
 const App = () => {
-
+  
   const [{ user }, dispatch] = useStateValue();
   const [tab, setTab] = useState<Tab>('home');
   const navigate = useNavigate();
   const match = useMatch<'tab', string>('browse/:tab');
 
   useEffect(() => {
-    const storedUser = window.localStorage.getItem('netflix-clone-user');
-    const storedUserList = window.localStorage.getItem('netflix-clone-user-list');
-
-    if (storedUser && storedUserList) {
-      const user = JSON.parse(storedUser);
-      const list = JSON.parse(storedUserList);
-      userService.setToken({ ...user, list });
-      navigate('browse');
+    const loggedUser = window.localStorage.getItem("netflix-cloneUser");
+    const loggedUserList = window.localStorage.getItem(
+      "netflix-cloneUser-List"
+    );
+    if (loggedUser && loggedUserList) {
+      const user = JSON.parse(loggedUser);
+      const mylist = JSON.parse(loggedUserList);
+      userService.setToken(user.token);
+      dispatch(setUser({ ...user, mylist }));
+      navigate("/browse");
     }
   }, []);
 
@@ -68,18 +71,56 @@ const App = () => {
   }, []);
 
   return (
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='sign-in' element={<SignIn />} />
-      <Route path='sign-up' element={<SignUp />} />
-      <Route path='/browse/:tab'
-        element={
-          <Auth>
-            <Main tab={tab} />
-          </Auth>
-        } />
+    <div>
+      <Routes>
+        <Route path='sign-in' element={<SignIn />} />
+        <Route path='sign-up' element={<SignUp />} />
+        <Route path='browse/:tab'
+          element={
+            <Auth>
+              <Main tab={tab} />
+            </Auth>
+          }
+           />
+        <Route
+          path="browse/"
+          element={
+            <Auth>
+              <Main tab={"home"} />
+            </Auth>
+          }
+        />
+           <Route
+          path="/watch/movie/:id"
+          element={
+            <Auth>
+              <VideoPage type={"movie"} />
+            </Auth>
+          }
+        />
+        <Route
+          path="/watch/tv/:id"
+          element={
+            <Auth>
+              <VideoPage type={"tv"} />
+            </Auth>
+          }
+        />
+        <Route
+          path="/browse/"
+          element={
+            <Auth>
+              <Main tab={"home"} />
+            </Auth>
+          }
+        />
+        <Route
+          path="/"
+          element={user ? <Navigate replace to="browse" /> : <Home />}
+        />
 
-    </Routes>
+      </Routes>
+    </div>
   );
 };
 
