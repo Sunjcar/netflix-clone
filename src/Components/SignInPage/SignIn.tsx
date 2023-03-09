@@ -8,6 +8,9 @@ import { userService } from '../../Services/UserService';
 import { signIn } from '../utils/helpers';
 import { setUser } from '../State/reducer';
 import styled from 'styled-components';
+import { devices } from '../LandingPage/FAQ';
+import { NavBar } from '../Navbar';
+
 const SignIn = () => {
   const [showDisclaimer, setShowDisclaimer] = useState<boolean>(false);
   const [, dispatch] = useStateValue();
@@ -40,15 +43,12 @@ const SignIn = () => {
     }
   };
   return (
-    <div className='w-[100vw] h-[100vh]'>
-      <header className='z-10 flex items-center justify-between p-8 '>
-        <Link to='/' className='z-10'>
-          <img className='w-[9rem] z-10' src={Netflix} />
-        </Link>
-      </header>
-      <section className='relative rounded-lg bg-[rgba(0,0,0,0.7)] flex box-border flex-col px-[60px] pt-[68px] pb-[40px] text-white max-w-[450px] min-h-[660px] mx-auto z-10 '>
-      <SignInForm>
-          <h1 className='mb-5 text-3xl'>Sign In</h1>
+    <SignInPageContainer>
+      <PosterBackground mode={"fullscreen"} />
+      <NavBar className="signin-page" />
+      <SignInContainer>
+        <SignInForm>
+          <h1>Sign In</h1>
 
           {errMsg !== "" ? <div className="error-message">{errMsg}</div> : null}
           <form>
@@ -70,33 +70,75 @@ const SignIn = () => {
             </div>
           </form>
         </SignInForm>
-        <div className=''>
-          <div className=' mt-[2rem] text-[16px] text-[#8c8c8c] flex gap-2'>
-            New to Netflix?
-            <Link to='/sign-up'>
-              <div className='text-white '> Sign up Now </div>
-            </Link>
+        <FormOther>
+          <div>
+            {"New to Netflix? "}
+            <Link to="/">Sign up now.</Link>
           </div>
-          <div className=' mt-[1rem]'>
+          <div className="disclaimer">
             <p>
-              <span className='text-[12px] text-[#8c8c8c]'>
-                This page is protected by Google reCAPTCHA to ensure you're not a bot.
-                <button className='text-blue-600 ml-[2px]'> Learn More </button>
+              <span>
+                This page is protected by Google reCAPTCHA to ensure you&apos;re
+                not a bot.&nbsp;
+                <button
+                  className={showDisclaimer ? "hide" : ""}
+                  onClick={() => setShowDisclaimer(true)}
+                >
+                  Learn more.
+                </button>
               </span>
             </p>
+            <div className={showDisclaimer ? "disclaimer-text" : "hide"}>
+              <span>
+                {
+                  "The information collected by Google reCAPTCHA is subject to the Google "
+                }
+                <a>Privacy Policy</a>
+                {" and "}
+                <a>Terms of Service</a>
+                {
+                  ", and is used for providing, maintaining, and improving the reCAPTCHA service and for general security purposes (it is not used for personalized advertising by Google)."
+                }
+              </span>
+            </div>
           </div>
-        </div>
-      </section>
-      <div className=' absolute top-0 bottom-0 left-0 right-0 brightness-50 h-[720px] lg:h-[692px]'>
-        <img className='z-0 object-cover w-full lg:h-[100vh] min-h-[114vh] ' src={Background} />
-      </div>
-    </div>
+        </FormOther>
+      </SignInContainer>
+    </SignInPageContainer>
   );
 };
 
 export default SignIn;
 
-const SignInForm = styled.div`
+export const SignInPageContainer = styled.div`
+  height: 100%;
+`;
+
+export const SignInContainer = styled.div`
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 68px 40px;
+  font-family: "Netflix Sans Light";
+  color: white;
+  max-width: 450px;
+  min-height: 660px;
+  margin: 0 auto 0;
+  z-index: 10;
+  @media ${devices.medium} {
+    position: absolute;
+    background-color: rgba(0, 0, 0);
+    top: 0;
+    z-index: 1;
+    max-width: 100%;
+    min-height: 100%;
+  }
+`;
+
+export const SignInForm = styled.div`
   input {
     line-height: 25px;
   }
@@ -122,7 +164,7 @@ const SignInForm = styled.div`
   }
 `;
 
-const RememberMe = styled.div`
+export const RememberMe = styled.div`
   position: relative;
   flex: 1 0 auto;
   padding-left: 20px;
@@ -150,3 +192,99 @@ const RememberMe = styled.div`
     top: -1px;
   }
 `;
+
+export const FormOther = styled.div`
+  color: #b3b3b3;
+  font-size: 16px;
+  margin-top: 2rem;
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  div.disclaimer {
+    font-size: 13px;
+    button {
+      background-color: transparent;
+      border: none;
+      color: #0071eb;
+      cursor: pointer;
+      padding: 0;
+      &.hide {
+        visibility: hidden;
+      }
+    }
+    button:hover {
+      text-decoration: underline;
+    }
+  }
+  div.hide {
+    opacity: 0;
+  }
+  div.disclaimer-text {
+    opacity: 1;
+    a {
+      color: #0071eb;
+    }
+  }
+`;
+
+export const BgWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  z-index: 0;
+  &.card {
+    width: 100vw;
+    height: 692px;
+    @media ${devices.large} {
+      height: 542px;
+    }
+    @media ${devices.medium} {
+      height: 536px;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  &.fullscreen {
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+`;
+
+export const BgImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export const BgMask = styled.div`
+  background: rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.7) 0,
+    transparent 60%,
+    rgba(0, 0, 0, 0.7)
+  );
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+`;
+
+interface PosterBackgroundProps {
+  mode: "card" | "fullscreen";
+}
+
+const PosterBackground = ({ mode }: PosterBackgroundProps) => {
+  return (
+    <BgWrapper className={mode}>
+      <BgImg src={Background} />
+      <BgMask />
+    </BgWrapper>
+  );
+};

@@ -37,13 +37,15 @@ const Home = () => {
         else navigate("/sign-up");
         window.scrollTo(0, 0);
     };
+ 
+
     return (
         <>
         <FrontPageContainer>
           <HeaderCard>
             <NavBar className="landing-page">
               <div className="signin">
-                <SignIn to="/login">Sign In</SignIn>
+                <SignIn to="/sign-in">Sign In</SignIn>
               </div>
             </NavBar>
             <OurStoryCard>
