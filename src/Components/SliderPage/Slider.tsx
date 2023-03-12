@@ -15,7 +15,7 @@ const Slider = ({ filter, shows }: { filter: string; shows: Show[]; }) => {
 
   return (
     <RowContainer>
-      <div>
+      <div className="row-header">
         <h2>{filter}</h2>
       </div>
       <SliderContainer>
