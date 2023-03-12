@@ -20,7 +20,7 @@ const Slider = ({ filter, shows }: { filter: string; shows: Show[]; }) => {
       </div>
       <SliderContainer>
         {isMoved && (
-          <div onClick={handleLeftClick}>
+          <div className="slider-control left" onClick={handleLeftClick}>
             {sliderArrow && <BiLeftArrow />}
           </div>
         )}
