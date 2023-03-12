@@ -4,45 +4,44 @@ import { SliderHook } from '../utils/hooks';
 
 import styled from "styled-components";
 import { devices } from '../LandingPage/FAQ';
-import { BiLeftArrow } from 'react-icons/bi';
+import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
 import Card from './Card';
 
 const SliderContent = styled.div``;
 
 const Slider = ({ filter, shows }: { filter: string; shows: Show[]; }) => {
-    const [sliderArrow, setSliderArrow] = useState<Boolean>(true);
-    const { ref, displayShows, showWidth, handleLeftClick, handleRightClick, sliderProps, isMoved } = SliderHook(shows);
+  const [sliderArrow, setSliderArrow] = useState<Boolean>(true);
+  const { ref, displayShows, showWidth, handleLeftClick, handleRightClick, sliderProps, isMoved } = SliderHook(shows);
 
-    if (shows.length === 0) return <></>;
+  return (
+    <RowContainer>
+      <div>
+        <h2>{filter}</h2>
+      </div>
+      <SliderContainer>
+        {isMoved && (
+          <div onClick={handleLeftClick}>
+            {sliderArrow && <BiLeftArrow />}
+          </div>
+        )}
+        <SliderContent ref={ref} {...sliderProps}>
+          {displayShows.map((show: Show) => (
+            <Card
+              key={`${filter}${show.id}`}
+              show={show}
+              showWidth={showWidth}
+              arrowToggle={(show: boolean) => {
+                setSliderArrow(show);
+              }}
+            />))}
 
-    return (
-        <RowContainer>
-            <div>
-                <h2>{filter}</h2>
-            </div>
-            <SliderContainer>
-                {isMoved && (
-                    <div onClick={handleLeftClick}>
-                        {sliderArrow && <BiLeftArrow />}
-                    </div>
-                )}
-                <div ref={ref} {...sliderProps}>
-                    {displayShows.length !== 0
-                        ? displayShows.map((show: Show) => (
-                            <Card
-                                key={`${filter}${show.id}`}
-                                show={show}
-                                showWidth={showWidth}
-                                arrowToggle={(show: boolean) => {
-                                    setSliderArrow(show);
-                                }}
-                            />
-                        ))
-                        : null}
-                </div>
-            </SliderContainer>
-        </RowContainer>
-    );
+        </SliderContent>
+        <div className="slider-control right" onClick={handleRightClick}>
+          {sliderArrow && <BiRightArrow />}
+        </div>
+      </SliderContainer>
+    </RowContainer>
+  );
 };
 
 export default Slider;
@@ -108,3 +107,4 @@ const SliderContainer = styled.div`
     right: 0;
   }
 `;
+

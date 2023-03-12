@@ -24,9 +24,8 @@ export const SliderHook = (shows: Show[]): SliderHookProps => {
     const [displayShows, setDisplayShows] = useState<Show[]>([]);
     const [containerWidth, setContainerWidth] = useState<number>(0);
     const [showWidth, setShowWidth] = useState<number>(0);
-    const [animation, setAnimation] = useState<CSSProperties>({});
-    const [isMoved, setIsMoved] = useState<boolean>(false);
     const [animationStyle, setAnimationStyle] = useState<CSSProperties>({});
+    const [isMoved, setIsMoved] = useState<boolean>(false);
 
     const setWidth = () => {
         if (ref.current)
@@ -38,48 +37,57 @@ export const SliderHook = (shows: Show[]): SliderHookProps => {
     }, [ref.current]);
 
     useEffect(() => {
-        let newCount = 7;
-        if (window.innerWidth > 950) newCount = 7;
-        else if (window.innerWidth > 550) newCount = 5;
-        else newCount = 3;
+        window.addEventListener("resize", setWidth);
 
-        const newWidth = containerWidth / newCount;
+        return () => {
+            window.removeEventListener("resize", setWidth);
+        };
+    }, []);
+
+    //for window resize
+    useEffect(() => {
+        let newDisplayCount = 7;
+        if (window.innerWidth > 950) newDisplayCount = 7;
+        else if (window.innerWidth > 550) newDisplayCount = 5;
+        else newDisplayCount = 3;
+
+        const newshowWidth = containerWidth / newDisplayCount;
         if (isMoved) {
-            setAnimation({
-                transform: `translateX(${-containerWidth - newWidth}px)`,
+            setAnimationStyle({
+                transform: `translateX(${-containerWidth - newshowWidth}px)`,
             });
-            if (count > newCount) {
-                const newShows = rotateMovieArray(2, allShows);
-                setDisplayShows(newShows.slice(0, newCount * 3 + 2));
-                setAllShows(newShows);
-            } else if (count < newCount) {
-                const newShows = rotateMovieArray(-2, allShows);
-                setDisplayShows(newShows.slice(0, newCount * 3 + 2));
-                setAllShows(newShows);
+            if (count > newDisplayCount) {
+                const newItems = rotateMovieArray(2, allShows);
+                setDisplayShows(newItems.slice(0, newDisplayCount * 3 + 2));
+                setAllShows(newItems);
+            } else if (count < newDisplayCount) {
+                const newItems = rotateMovieArray(-2, allShows);
+                setDisplayShows(newItems.slice(0, newDisplayCount * 3 + 2));
+                setAllShows(newItems);
             }
         }
-        setShowWidth(newWidth);
-        setCount(newCount);
+
+        setShowWidth(newshowWidth);
+        setCount(newDisplayCount);
     }, [containerWidth]);
 
     useEffect(() => {
-        setAllShows(allShows);
-        setDisplayShows(allShows.slice(0, count * 3 + 2));
-        setAnimation({ transform: `translate(0px)` });
+        setAllShows(shows);
+        setDisplayShows(shows.slice(0, count * 3 + 2));
+        setAnimationStyle({ transform: `translateX(0px)` });
         setIsMoved(false);
     }, [shows]);
 
     const handleLeftClick = () => {
-        setAnimation({
-            transform: `translateX(${0 - showWidth} px)`,
+        setAnimationStyle({
+            transform: `translateX(${0 - showWidth}px)`,
             transition: "transform 0.5s",
         });
-
-        const newShows = rotateMovieArray(-count, allShows);
+        const newItems = rotateMovieArray(-count, allShows);
         setTimeout(() => {
-            setAllShows(newShows);
-            setDisplayShows(newShows.slice(0, count * 3 + 2));
-            setAnimation({
+            setAllShows(newItems);
+            setDisplayShows(newItems.slice(0, count * 3 + 2));
+            setAnimationStyle({
                 transform: `translateX(${-containerWidth - showWidth}px)`,
             });
         }, 500);
@@ -88,26 +96,25 @@ export const SliderHook = (shows: Show[]): SliderHookProps => {
 
     const handleRightClick = () => {
         let rotate = 0,
-            offSet = 0;
+            offset = 0;
         if (isMoved) {
-            offSet = -containerWidth * 2 - showWidth;
+            offset = -containerWidth * 2 - showWidth;
             rotate = count;
         } else {
-            offSet = -containerWidth;
+            offset = -containerWidth;
             rotate = -1;
         }
 
-        setAnimation({
-            transform: `translateX(${offSet}px)`,
+        setAnimationStyle({
+            transform: `translateX(${offset}px)`,
             transition: "transform 0.5s",
         });
-
-        const newShows = rotateMovieArray(rotate, allShows);
+        const newItems = rotateMovieArray(rotate, allShows);
         setTimeout(() => {
-            setAllShows(newShows);
-            setDisplayShows(newShows.slice(0, count * 3 + 2));
-            setAnimation({
-                transform: `translateX(${isMoved ? offSet + containerWidth : offSet - showWidth
+            setAllShows(newItems);
+            setDisplayShows(newItems.slice(0, count * 3 + 2));
+            setAnimationStyle({
+                transform: `translateX(${isMoved ? offset + containerWidth : offset - showWidth
                     }px)`,
             });
         }, 500);
@@ -116,14 +123,15 @@ export const SliderHook = (shows: Show[]): SliderHookProps => {
 
     const sliderProps = {
         style: animationStyle,
-    }
+    };
+
     return {
         ref,
         showWidth,
-        displayShows,
         handleLeftClick,
         handleRightClick,
         sliderProps,
         isMoved,
-      };
+        displayShows,
+    };
 };
