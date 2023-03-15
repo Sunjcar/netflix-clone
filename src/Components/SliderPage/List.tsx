@@ -1,24 +1,43 @@
+
+import { useState } from "react";
+import styled from "styled-components";
+import { Show } from "../../Services/types";
 import { useStateValue } from "../State";
 import Card from "./Card";
+import Slider from "./Slider";
 
 
-const List = () => {
-  const [{ mylist }] = useStateValue();
+const MyListContainer = styled.div`
+  min-height: 100vh;
+  padding: 5vh 4vw;
+`;
 
+const MyListCardsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 1rem;
+  column-gap: 1rem;
+`;
+
+const MyList = () => {
+  const [mylist] = useState<Show[]>([]);
+  console.log(mylist)
   return (
-    <div className=" min-h-[100vh] px-[5vw] py-[5vh]">
-      <div className="flex flex-wrap gap-y-4 gap-x-4">
+    <MyListContainer>
+      <MyListCardsContainer>
         {mylist.map((show) => (
           <Card
             key={show.id}
             show={show}
             showWidth={window.innerWidth * 0.14}
-            arrowToggle={() => (null)}
+            arrowToggle={() => 
+              null
+            }
           />
         ))}
-      </div>
-    </div>
+      </MyListCardsContainer>
+    </MyListContainer>
   );
 };
 
-export default List;
+export default MyList;
