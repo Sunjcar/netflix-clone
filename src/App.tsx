@@ -4,13 +4,13 @@ import SignIn from "./Components/SignInPage/SignIn";
 import SignUp from "./Components/SignUpPage";
 import { useStateValue } from "./Components/State";
 import { ReactElement, useEffect, useState } from "react";
-import { isTab, Tab } from "./Services/types";
+import { isTab, Show, Tab } from "./Services/types";
 import { userService } from "./Services/UserService";
 import { Main } from "./Components/SliderPage";
 import tmdbAPI from "./Services/tmdbAPI";
 import { setHomeData, setShowData, setUser } from "./Components/State/reducer";
 import VideoPage from "./Components/VideoPage/Video";
-
+import styled from "styled-components";
 const Auth = ({ children }: { children: ReactElement; }) => {
   const [{ user }] = useStateValue();
 
@@ -21,23 +21,20 @@ const Auth = ({ children }: { children: ReactElement; }) => {
   return children;
 };
 
-const App = () => {
-  
-  const [{ user }, dispatch] = useStateValue();
+const App = ( ) => {
+
+  const [{ user}, dispatch] = useStateValue();
   const [tab, setTab] = useState<Tab>('home');
   const navigate = useNavigate();
   const match = useMatch<'tab', string>('browse/:tab');
 
+
   useEffect(() => {
     const loggedUser = window.localStorage.getItem("netflix-cloneUser");
-    const loggedUserList = window.localStorage.getItem(
-      "netflix-cloneUser-List"
-    );
-    if (loggedUser && loggedUserList) {
+    if (loggedUser) {
       const user = JSON.parse(loggedUser);
-      const mylist = JSON.parse(loggedUserList);
       userService.setToken(user.token);
-      dispatch(setUser({ ...user, mylist }));
+      dispatch(setUser({ ...user}));
       navigate("/browse");
     }
   }, []);
@@ -81,16 +78,16 @@ const App = () => {
               <Main tab={tab} />
             </Auth>
           }
-           />
+        />
         <Route
-          path="browse/"
+          path="browse"
           element={
             <Auth>
               <Main tab={"home"} />
             </Auth>
           }
         />
-           <Route
+        <Route
           path="/watch/movie/:id"
           element={
             <Auth>
@@ -118,10 +115,12 @@ const App = () => {
           path="/"
           element={user ? <Navigate replace to="browse" /> : <Home />}
         />
-
       </Routes>
     </div>
   );
 };
 
 export default App;
+
+
+

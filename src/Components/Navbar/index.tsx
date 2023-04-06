@@ -33,7 +33,6 @@ export const NavBar_Main = ({ scrolled, handleLogout }: NavBar_MainProps) => {
         <Link to="/browse">Home</Link>
         <Link to="/browse/tvshows">TV Shows</Link>
         <Link to="/browse/movies">Movies</Link>
-        <Link to="/browse/mylist">My List</Link>
       </SideBar>
       <SideBarMask
         className={openSidebar ? "open" : "close"}
@@ -50,7 +49,6 @@ export const NavBar_Main = ({ scrolled, handleLogout }: NavBar_MainProps) => {
         <Link to="/browse">Home</Link>
         <Link to="/browse/tvshows">TV Shows</Link>
         <Link to="/browse/movies">Movies</Link>
-        <Link to="/browse/mylist">My List</Link>
       </div>
       </div>
       <NavButtonContainer>
