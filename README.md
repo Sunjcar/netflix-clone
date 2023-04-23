@@ -4,12 +4,12 @@ This is a Netflix-Clone built as the final project of the Javascript course of T
 [Live Demo] (https://sunjcar-netflix.netlify.app/) :point_left:
 
 ### Libraries/API
--Styled Components
--React Icons
--Axios
--Tailwind CSS
--TMDB API
-
+- React
+- React-router-dom
+- Styled Components
+- React Icons
+- Tailwind CSS
+- TMDB API
 
 ### Future Improvement
 -My list storage function
