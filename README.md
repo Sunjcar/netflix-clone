@@ -12,4 +12,4 @@ This is a Netflix-Clone built as the final project of the Javascript course of T
 - TMDB API
 
 ### Future Improvement
--My list storage function
+- My list storage function
